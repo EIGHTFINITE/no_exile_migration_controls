@@ -711,22 +711,106 @@ invite_exile = {
 		    }
 		}
 		# If you have state religion, exiles must have your religion
-		trigger_if = {
-			limit = {
-				NOT = { is_interest_group_type = ig_devout }
-				scope:actor ?= {
-					has_law = law_type:law_state_religion
+		OR = {
+			trigger_if = {
+				limit = {
+					scope:actor ?= {
+						OR = {
+							has_law = law_type:law_state_religion
+							has_law = law_type:law_state_atheism
+						}
+					}
+				}
+				custom_tooltip = {
+					text = invite_exile_state_religion_tt
+					religion = scope:actor.religion
 				}
 			}
-			custom_tooltip = {
-				text = invite_exile_state_religion_tt
-				religion = scope:actor.religion
+			trigger_if = {
+				limit = {
+					scope:actor ?= {
+						has_law = law_type:law_freedom_of_conscience
+					}
+				}
+				custom_tooltip = {
+					text = TRIGGER_SHARES_HERITAGE_TRAIT_WITH_STATE_RELIGION_NOCONTEXT
+					OR = {
+						religion = scope:actor.religion
+						# /common/discrimination_traits/01_religious_heritage.txt
+						AND = {
+							religion = {
+								has_discrimination_trait = christian
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = christian
+							}
+						}
+						AND = {
+							religion = {
+								has_discrimination_trait = muslim
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = muslim
+							}
+						}
+						AND = {
+							religion = {
+								has_discrimination_trait = jewish
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = jewish
+							}
+						}
+						AND = {
+							religion = {
+								has_discrimination_trait = eastern
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = eastern
+							}
+						}
+						AND = {
+							religion = {
+								has_discrimination_trait = animist
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = animist
+							}
+						}
+						AND = {
+							religion = {
+								has_discrimination_trait = buddhist
+							}
+							scope:actor.religion = {
+								has_discrimination_trait = buddhist
+							}
+						}
+					}
+				}
+			}
+			trigger_if = {
+				limit = {
+					scope:actor ?= {
+						has_law = law_type:law_total_separation
+					}
+				}
+				scope:actor = {
+					has_law = law_type:law_total_separation
+				}
+			}
+			scope:actor = {
+				has_law = law_type:law_no_migration_controls
 			}
 		}
 		# cannot invite culturally discriminated exiles
-		NOT = {
-			culture = {
-				culture_is_discriminated_in = scope:actor
+		OR = {
+			NOT = {
+				culture = {
+					culture_is_discriminated_in = scope:actor
+				}
+			}
+			scope:actor = {
+				has_law = law_type:law_no_migration_controls
 			}
 		}
 		# Cannot invite exiles if you have Closed Borders
