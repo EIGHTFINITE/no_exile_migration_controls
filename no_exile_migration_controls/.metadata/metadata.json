@@ -4,7 +4,7 @@
   "version" : "1.0",
   "supported_game_version" : "1.3.*",
   "short_description" : "",
-  "tags" : ["Balance","Fixes","Gameplay","Interest Groups"],
+  "tags" : ["Balance","Cultures And Religions","Fixes","Gameplay","Interest Groups"],
   "relationships" : [],
   "game_custom_data" : {
     "multiplayer_synchronized" : true
