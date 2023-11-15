@@ -2,7 +2,7 @@
   "name" : "no_exile_migration_controls",
   "id" : "",
   "version" : "1.0",
-  "supported_game_version" : "1.3.*",
+  "supported_game_version" : "1.5.*",
   "short_description" : "",
   "tags" : ["Balance","Cultures And Religions","Fixes","Gameplay","Interest Groups"],
   "relationships" : [],
